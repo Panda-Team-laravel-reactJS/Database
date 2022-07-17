@@ -31,7 +31,7 @@ CREATE TABLE `Admins` (
   `updated_at` datetime
 );
 
-CREATE TABLE `SpaStaff` (
+CREATE TABLE `Staff` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(100),
   `gender` ENUM ('Male', 'Female', 'Others'),
@@ -91,16 +91,16 @@ ALTER TABLE `Feedback` ADD FOREIGN KEY (`booking_id`) REFERENCES `Bookings` (`id
 
 ALTER TABLE `Bookings` ADD FOREIGN KEY (`customer_id`) REFERENCES `Customers` (`id`);
 
-ALTER TABLE `Schedules` ADD FOREIGN KEY (`staff_id`) REFERENCES `SpaStaff` (`id`);
+ALTER TABLE `Schedules` ADD FOREIGN KEY (`staff_id`) REFERENCES `Staff` (`id`);
 
 ALTER TABLE `Bookings` ADD FOREIGN KEY (`schedule_id`) REFERENCES `Schedules` (`id`);
 
 ALTER TABLE `Schedules` ADD FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`);
 
-ALTER TABLE `SpaStaff` ADD FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`);
+ALTER TABLE `Staff` ADD FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`);
 
 ALTER TABLE `Jobs` ADD FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`);
 
-ALTER TABLE `Jobs` ADD FOREIGN KEY (`staff_id`) REFERENCES `SpaStaff` (`id`);
+ALTER TABLE `Jobs` ADD FOREIGN KEY (`staff_id`) REFERENCES `Staff` (`id`);
 
 ALTER TABLE `Schedules` ADD FOREIGN KEY (`staff_id`, `service_id`) REFERENCES `Jobs` (`staff_id`, `service_id`)
